@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>チキンレース(親)</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="setup" class="center" hidden>
+    <div class="card">
+      <h1>チキンレース <span class="muted small-text">親(司会)用</span></h1>
+      <p class="muted small-text" id="setupMode"></p>
+      <button class="btn primary big" id="newRoom">新しいルームを作成</button>
+      <div class="choice" id="savedRooms"></div>
+      <div class="choice">
+        <h3 class="muted small-text">ルームコードを指定して開く</h3>
+        <div class="row">
+          <input class="inp grow" id="openCode" maxlength="8" placeholder="例: AB12CD">
+          <button class="btn" id="openRoom">開く</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="app" class="app" hidden>
+    <header class="top">
+      <div class="brand">チキンレース<span class="role">親</span></div>
+      <div class="roominfo">
+        ルーム <b id="roomCode"></b>
+        <button class="btn small" id="copyUrl">参加URLをコピー</button>
+        <span class="badge" id="mode"></span>
+      </div>
+      <div class="phase" id="phase"></div>
+    </header>
+    <div class="main">
+      <div class="stage"><canvas id="board"></canvas></div>
+      <aside class="side">
+        <nav class="tabs" id="tabs">
+          <button data-tab="play" class="active">進行</button>
+          <button data-tab="config">設定</button>
+          <button data-tab="history">履歴</button>
+          <button data-tab="room">ルーム</button>
+        </nav>
+        <div class="panel" id="panel"></div>
+      </aside>
+    </div>
+  </div>
+  <input type="file" id="importFile" accept="application/json,.json" hidden>
+
+  <script src="firebase-config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/net.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/board.js"></script>
+  <script src="js/host.js"></script>
+</body>
+</html>
