@@ -175,8 +175,8 @@
     advance();
     if (state.phase !== 'judge') return;
     const rows = CG.ranking(state.players, state.sim.balls);
-    // 順位が低い人から投げる
-    state.queue = rows.filter((r) => state.judge[r.p.id]).map((r) => r.p.id).reverse();
+    // 順位が高い人(リードしている人)から投げる
+    state.queue = rows.filter((r) => state.judge[r.p.id]).map((r) => r.p.id);
     state.turn = 0;
     state.passed = {};
     state.nextShotTick = 0;
@@ -446,7 +446,7 @@
     } else if (st.phase === 'judge') {
       const k = st.players.filter((p) => st.judge[p.id]).length;
       h += '<h2>第' + st.q + '問 正誤入力</h2>';
-      h += '<p class="muted small-text">正解者を○にして確定すると、順位の低い人から順に投球が始まります。</p>';
+      h += '<p class="muted small-text">正解者を○にして確定すると、順位の高い人(リードしている人)から順に投球が始まります。</p>';
       h += '<div id="rankBox">' + playRank() + '</div>';
       h += '<div class="row"><button class="btn small" data-act="allOk">全員○</button><button class="btn small" data-act="allNg">全員×</button></div>';
       h += '<button class="btn primary big" data-act="confirm">確定して投球へ(正解 ' + k + ' 人)</button>';
